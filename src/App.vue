@@ -1,11 +1,18 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view />
+  <app-header></app-header>
+  <div class="mt-12 px-48">
+    <router-view />
+  </div>
 </template>
+<script>
+import AppHeader from "@/components/molecules/AppHeader.vue";
 
+export default {
+  components: {
+    AppHeader,
+  },
+};
+</script>
 <style lang="scss">
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
