@@ -1,6 +1,6 @@
 <template>
   <div>
-    <tutorial-form action="edit"></tutorial-form>
+    <tutorial-form action="edit" title="Editar Tutorial"></tutorial-form>
   </div>
 </template>
 
