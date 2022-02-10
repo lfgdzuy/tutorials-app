@@ -4,8 +4,15 @@ import Index from "../views/tutorials/Index.vue";
 const routes = [
   {
     path: "/",
-    name: "tutorials",
+    name: "root",
     component: Index,
+    children: [
+      {
+        path: "tutorials",
+        name: "tutorials",
+        component: Index,
+      },
+    ],
   },
   {
     path: "/tutorials/new",
