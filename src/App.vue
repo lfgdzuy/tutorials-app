@@ -1,6 +1,6 @@
 <template>
   <app-header></app-header>
-  <div class="mt-12 px-48">
+  <div class="mt-12 px-56">
     <router-view />
   </div>
 </template>
