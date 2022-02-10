@@ -5,11 +5,12 @@
     <p class="py-2">
       <strong>Estado:</strong> {{ tutorial.status ? "Público" : "Oculto" }}
     </p>
-    <core-button class="mt-2">Editar</core-button>
+    <core-button class="mt-2" @click="goToEdit">Editar</core-button>
   </div>
 </template>
 <script>
 import CoreButton from "@/components/atoms/CoreButton.vue";
+import { useRouter } from "vue-router";
 
 export default {
   name: "TutorialDetails",
@@ -17,6 +18,16 @@ export default {
     CoreButton,
   },
   props: ["tutorial"],
+  setup(props) {
+    const router = useRouter();
+    function goToEdit() {
+      router.push({
+        path: `/tutorials/edit/${props.tutorial.id}`,
+      });
+    }
+
+    return { goToEdit };
+  },
 };
 </script>
 
