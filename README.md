@@ -1,4 +1,4 @@
-# tutorials-app
+# Tutorials SPA built on top of Vue.js, Axios and Tailwind CSS (it consumes the REST API: tutorials-api)
 
 ## Project setup
 ```
