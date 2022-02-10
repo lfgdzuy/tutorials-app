@@ -1,30 +1,32 @@
 <template>
   <core-card :title="title" :action-icon="action">
     <template v-slot:header-action>
-      <core-icon
-        v-if="action === 'edit'"
+      <TrashIcon
+        class="h-6 w-6 text-red-600 cursor-pointer"
         @click="deleteTutorial"
-        icon="trash"
-      ></core-icon>
+      />
     </template>
     <template v-slot:body>
-      <form>
+      <form
+        @submit.prevent="
+          action == 'create' ? createTutorial() : updateTutorial()
+        "
+      >
         <div class="grid grid-cols-1 gap-6 mt-4">
           <div>
             <core-input
               type="text"
               label="Título"
               placeholder="Ingrese el títuto del tutorial aquí"
-              :value="tutorial ? tutorial.name : ''"
+              :value="tutorial.title"
             ></core-input>
           </div>
-
           <div>
             <core-input
               type="text"
               label="Descripción"
               placeholder="Ingrese la descripción del tutorial aquí"
-              :value="tutorial ? tutorial.description : ''"
+              :value="tutorial.description"
             ></core-input>
           </div>
 
@@ -43,13 +45,9 @@
         </div>
 
         <div class="flex justify-end mt-6">
-          <core-button
-            v-if="action === 'create'"
-            class="font-bold"
-            @click="createTutorial"
-            >Crear</core-button
-          >
-          <core-button v-else @click="updateTutorial">Guardar</core-button>
+          <core-button>{{
+            action === "create" ? "Crear" : "Guardar"
+          }}</core-button>
         </div>
       </form>
     </template>
@@ -58,14 +56,15 @@
 
 <script>
 import CoreCard from "@/components/atoms/CoreCard.vue";
-import CoreIcon from "@/components/atoms/CoreIcon.vue";
 import CoreInput from "@/components/atoms/CoreInput.vue";
 import CoreRadio from "@/components/atoms/CoreRadio.vue";
 import CoreButton from "@/components/atoms/CoreButton.vue";
+import tutorialsService from "@/services/tutorials";
+import { TrashIcon } from "@heroicons/vue/solid";
 
 export default {
   name: "TutorialForm",
-  components: { CoreCard, CoreIcon, CoreInput, CoreRadio, CoreButton },
+  components: { CoreCard, CoreInput, CoreRadio, CoreButton, TrashIcon },
   props: {
     title: {
       type: String,
@@ -75,15 +74,34 @@ export default {
       type: String,
       default: null,
     },
-    tutorial: {
-      type: {},
-      default: null,
-    },
+  },
+  data() {
+    return {
+      tutorial: {
+        title: "",
+        description: "",
+        published: false,
+        videoUrl: "",
+      },
+    };
   },
   methods: {
-    createTutorial() {},
-    updateTutorial() {},
-    deleteTutorial() {},
+    createTutorial() {
+      tutorialsService.create(this.tutorial).then((res) => {
+        console.log("Tutorial has been created:", res.data);
+        this.$emit("newCreated");
+      });
+    },
+    updateTutorial() {
+      tutorialsService.update(this.tutorial).then((res) => {
+        console.log("Tutorial has been updated:", res.data);
+      });
+    },
+    deleteTutorial() {
+      tutorialsService.delete(this.tutorial.id).then((res) => {
+        console.log("Tutorial has been deleted:", res.data);
+      });
+    },
   },
 };
 </script>
