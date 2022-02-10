@@ -1,5 +1,5 @@
 <template>
-  <div class="mt-2 w-full">
+  <div class="mt-2 w-full cursor-pointer">
     <core-card>
       <template v-slot:body>
         <span class="block text-left">{{ tutorial.title }}</span>

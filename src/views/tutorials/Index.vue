@@ -81,7 +81,7 @@ export default {
     },
   },
   mounted() {
-    // this.searchTutorials();
+    this.searchTutorials();
   },
 };
 </script>
