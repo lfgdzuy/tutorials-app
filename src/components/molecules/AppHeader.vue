@@ -9,8 +9,6 @@
             >Tutos.com</a
           >
         </div>
-
-        <!-- Mobile menu button -->
         <div class="flex md:hidden">
           <button
             type="button"
@@ -36,7 +34,7 @@
             >Tutoriales</a
           >
           <a
-            href="#"
+            href="/tutorials/new"
             class="px-2 py-1 text-sm font-medium text-gray-700 transition-colors duration-200 transform rounded hover:bg-gray-900 hover:text-gray-100 md:mx-2"
             >Agregar</a
           >
