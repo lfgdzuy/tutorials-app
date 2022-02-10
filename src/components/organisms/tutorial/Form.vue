@@ -18,7 +18,7 @@
               type="text"
               label="Título"
               placeholder="Ingrese el títuto del tutorial aquí"
-              :value="tutorial.title"
+              v-model="tutorial.title"
             ></core-input>
           </div>
           <div>
@@ -26,7 +26,7 @@
               type="text"
               label="Descripción"
               placeholder="Ingrese la descripción del tutorial aquí"
-              :value="tutorial.description"
+              v-model="tutorial.description"
             ></core-input>
           </div>
 
