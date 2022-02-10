@@ -29,7 +29,7 @@
       <div class="w-full md:flex md:items-center md:justify-between">
         <div class="flex flex-col px-2 py-3 -mx-4 md:flex-row md:mx-0 md:py-0">
           <a
-            href="#"
+            href="/tutorials"
             class="px-2 py-1 text-sm font-medium text-gray-700 transition-colors duration-200 transform rounded hover:bg-gray-900 hover:text-gray-100 md:mx-2"
             >Tutoriales</a
           >
