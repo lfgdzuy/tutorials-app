@@ -1,11 +1,13 @@
 <template>
-  <div class="">
+  <div class="mt-8">
     <core-card
       :description="`No se encontraron tutoriales con el término de búsqueda: ${searchTerm}`"
     >
       <template v-slot:footer>
         <p class="mt-2 text-gray-600">
-          <router-link to="/new">Mostrar todos</router-link>
+          <strong @click.prevent="$emit('clearSearch')" class="cursor-pointer"
+            >Mostrar todos</strong
+          >
         </p>
       </template>
     </core-card>
