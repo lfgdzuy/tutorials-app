@@ -9,8 +9,8 @@ class TutorialsService {
   create(data) {
     return http.post("/tutorials", data);
   }
-  update(id, data) {
-    return http.put(`/tutorials/${id}`, data);
+  update(data) {
+    return http.put(`/tutorials/${data.id}`, data);
   }
   delete(id) {
     return http.delete(`/tutorials/${id}`);
