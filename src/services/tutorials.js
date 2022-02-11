@@ -16,7 +16,7 @@ class TutorialsService {
     return http.delete(`/tutorials/${id}`);
   }
   deleteAll() {
-    return http.delete(`/tutorials`);
+    return http.delete(`/tutorials/mass_delete`);
   }
   find(term) {
     return term !== "" ? http.get(`/tutorials?term=${term}`) : this.getAll();
