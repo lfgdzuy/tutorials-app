@@ -11,7 +11,9 @@
         @click="selectTutorial(index)"
         class="self-start"
       ></tutorial-item>
-      <core-button class="self-start mt-4">Eliminar todos</core-button>
+      <core-button class="self-start mt-4" @click="removeAll"
+        >Eliminar todos</core-button
+      >
     </div>
     <div class="flex flex-col w-1/2 pl-2">
       <h2 class="text-left text-3xl font-bold pb-2 border-b-2 mb-2">
@@ -28,6 +30,7 @@
 import TutorialItem from "@/components/organisms/tutorial/Item.vue";
 import TutorialDetails from "@/components/organisms/tutorial/Details.vue";
 import CoreButton from "@/components/atoms/CoreButton.vue";
+import tutorialsService from "@/services/tutorials";
 
 export default {
   name: "TutorialsList",
@@ -45,6 +48,11 @@ export default {
   methods: {
     selectTutorial(index) {
       this.selectedTutorial = this.tutorials[index];
+    },
+    removeAll() {
+      tutorialsService.deleteAll().then((res) => {
+        console.log("All Tutorials have been deleted:", res.data);
+      });
     },
   },
 };
