@@ -22,7 +22,7 @@ export default {
     const router = useRouter();
     function goToEdit() {
       router.push({
-        path: `/tutorials/edit/${props.tutorial.id}`,
+        path: `/tutorials/${props.tutorial.id}/edit`,
       });
     }
 
