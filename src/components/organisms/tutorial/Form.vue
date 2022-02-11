@@ -18,7 +18,7 @@
               type="text"
               label="Título"
               placeholder="Ingrese el títuto del tutorial aquí"
-              v-model="tutorial.title"
+              v-model="form.title"
             ></core-input>
           </div>
           <div>
@@ -26,7 +26,7 @@
               type="text"
               label="Descripción"
               placeholder="Ingrese la descripción del tutorial aquí"
-              v-model="tutorial.description"
+              v-model="form.description"
             ></core-input>
           </div>
 
@@ -34,7 +34,7 @@
             <core-radios-group
               label="Cómo quiere mantener el tutorial?"
               :options="statusOptions"
-              v-model="tutorial.published"
+              v-model="form.published"
             ></core-radios-group>
           </div>
         </div>
@@ -69,14 +69,15 @@ export default {
       type: String,
       default: null,
     },
+    tutorial: null,
   },
   data() {
     return {
-      tutorial: {
+      form: {
         title: "",
         description: "",
         published: false,
-        videoUrl: "",
+        video_url: "",
       },
       statusOptions: [
         {
@@ -92,13 +93,15 @@ export default {
   },
   methods: {
     createTutorial() {
-      tutorialsService.create(this.tutorial).then((res) => {
+      this.form.published = this.form.published === "true";
+      tutorialsService.create(this.form).then((res) => {
         console.log("Tutorial has been created:", res.data);
         this.$emit("newCreated");
       });
     },
     updateTutorial() {
-      tutorialsService.update(this.tutorial).then((res) => {
+      this.form.published = this.form.published === "true";
+      tutorialsService.update(this.form).then((res) => {
         console.log("Tutorial has been updated:", res.data);
       });
     },
@@ -107,6 +110,9 @@ export default {
         console.log("Tutorial has been deleted:", res.data);
       });
     },
+  },
+  mounted() {
+    this.form = this.tutorial;
   },
 };
 </script>
