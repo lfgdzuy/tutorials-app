@@ -30,17 +30,12 @@
             ></core-input>
           </div>
 
-          <div class="flex flex-col items-start">
-            <p class="font-bold">Cómo quiere mantener el tutorial?</p>
-            <div class="flex mt-2">
-              <core-radio type="radio" label="Oculto" id="status"></core-radio>
-              <core-radio
-                type="radio"
-                label="Público"
-                id="status"
-                class="ml-4"
-              ></core-radio>
-            </div>
+          <div class="flex mt-2">
+            <core-radios-group
+              label="Cómo quiere mantener el tutorial?"
+              :options="statusOptions"
+              v-model="tutorial.published"
+            ></core-radios-group>
           </div>
         </div>
 
@@ -57,14 +52,14 @@
 <script>
 import CoreCard from "@/components/atoms/CoreCard.vue";
 import CoreInput from "@/components/atoms/CoreInput.vue";
-import CoreRadio from "@/components/atoms/CoreRadio.vue";
+import CoreRadiosGroup from "@/components/atoms/CoreRadiosGroup.vue";
 import CoreButton from "@/components/atoms/CoreButton.vue";
 import tutorialsService from "@/services/tutorials";
 import { TrashIcon } from "@heroicons/vue/solid";
 
 export default {
   name: "TutorialForm",
-  components: { CoreCard, CoreInput, CoreRadio, CoreButton, TrashIcon },
+  components: { CoreCard, CoreInput, CoreRadiosGroup, CoreButton, TrashIcon },
   props: {
     title: {
       type: String,
@@ -83,6 +78,16 @@ export default {
         published: false,
         videoUrl: "",
       },
+      statusOptions: [
+        {
+          value: false,
+          text: "Oculto",
+        },
+        {
+          value: true,
+          text: "Público",
+        },
+      ],
     };
   },
   methods: {
